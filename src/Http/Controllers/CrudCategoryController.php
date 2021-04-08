@@ -2,9 +2,9 @@
 
 namespace ilBronza\Category\Http\Controllers;
 
-use IlBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
-use IlBronza\Category\Models\Category;
-use IlBronza\Datatables\Datatables;
+use ilBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
+use ilBronza\Category\Models\Category;
+use ilBronza\Datatables\Datatables;
 use Illuminate\Http\Request;
 use ilBronza\CRUD\CRUD;
 use ilBronza\CRUD\Traits\CRUDBelongsToManyTrait;
