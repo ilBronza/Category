@@ -1,6 +1,6 @@
 <?php
 
-namespace ilBronza\Category\Http\Controllers\CRUDTraits;
+namespace IlBronza\Category\Http\Controllers\CRUDTraits;
 
 trait CRUDCategoryParametersTrait
 {

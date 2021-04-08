@@ -1,6 +1,6 @@
 <?php
 
-namespace ilBronza\Category\Facades;
+namespace IlBronza\Category\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

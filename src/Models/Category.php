@@ -1,12 +1,12 @@
 <?php
 
-namespace ilBronza\Category\Models;
+namespace IlBronza\Category\Models;
 
 use App\Models\Traits\Relationships\ParentingTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use ilBronza\CRUD\Traits\Model\CRUDModelTrait;
-use ilBronza\CRUD\Traits\Model\CRUDRelationshipModelTrait;
+use IlBronza\CRUD\Traits\Model\CRUDModelTrait;
+use IlBronza\CRUD\Traits\Model\CRUDRelationshipModelTrait;
 
 class Category extends Model
 {

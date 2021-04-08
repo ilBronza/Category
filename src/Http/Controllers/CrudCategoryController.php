@@ -1,22 +1,22 @@
 <?php
 
-namespace ilBronza\Category\Http\Controllers;
+namespace IlBronza\Category\Http\Controllers;
 
-use ilBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
-use ilBronza\Category\Models\Category;
+use IlBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
+use IlBronza\Category\Models\Category;
 use Illuminate\Http\Request;
-use ilBronza\CRUD\CRUD;
-use ilBronza\CRUD\Traits\CRUDBelongsToManyTrait;
-use ilBronza\CRUD\Traits\CRUDCreateStoreTrait;
-use ilBronza\CRUD\Traits\CRUDDeleteTrait;
-use ilBronza\CRUD\Traits\CRUDDestroyTrait;
-use ilBronza\CRUD\Traits\CRUDEditUpdateTrait;
-use ilBronza\CRUD\Traits\CRUDIndexTrait;
-use ilBronza\CRUD\Traits\CRUDPlainIndexTrait;
-use ilBronza\CRUD\Traits\CRUDRelationshipTrait;
-use ilBronza\CRUD\Traits\CRUDShowTrait;
-use ilBronza\CRUD\Traits\CRUDUpdateEditorTrait;
-use ilBronza\Datatables\Datatables;
+use IlBronza\CRUD\CRUD;
+use IlBronza\CRUD\Traits\CRUDBelongsToManyTrait;
+use IlBronza\CRUD\Traits\CRUDCreateStoreTrait;
+use IlBronza\CRUD\Traits\CRUDDeleteTrait;
+use IlBronza\CRUD\Traits\CRUDDestroyTrait;
+use IlBronza\CRUD\Traits\CRUDEditUpdateTrait;
+use IlBronza\CRUD\Traits\CRUDIndexTrait;
+use IlBronza\CRUD\Traits\CRUDPlainIndexTrait;
+use IlBronza\CRUD\Traits\CRUDRelationshipTrait;
+use IlBronza\CRUD\Traits\CRUDShowTrait;
+use IlBronza\CRUD\Traits\CRUDUpdateEditorTrait;
+use IlBronza\Datatables\Datatables;
 
 class CrudCategoryController extends CRUD
 {
@@ -67,7 +67,7 @@ class CrudCategoryController extends CRUD
     public $showMethodRelationships = ['children'];
 
     protected $relationshipsControllers = [
-        'children' => '\ilBronza\Category\Http\Controllers\CrudCategoryController'
+        'children' => '\IlBronza\Category\Http\Controllers\CrudCategoryController'
     ];
 
     /**
@@ -77,7 +77,7 @@ class CrudCategoryController extends CRUD
 
     /**
         protected $relationshipsControllers = [
-        'permissions' => '\ilBronza\AccountManager\Http\Controllers\PermissionController'
+        'permissions' => '\IlBronza\AccountManager\Http\Controllers\PermissionController'
     ];
     **/
 

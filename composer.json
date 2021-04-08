@@ -20,21 +20,21 @@
     },
     "autoload": {
         "psr-4": {
-            "ilBronza\\Category\\": "src/"
+            "IlBronza\\Category\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ilBronza\\Category\\Tests\\": "tests"
+            "IlBronza\\Category\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ilBronza\\Category\\CategoryServiceProvider"
+                "IlBronza\\Category\\CategoryServiceProvider"
             ],
             "aliases": {
-                "Category": "ilBronza\\Category\\Facades\\Category"
+                "Category": "IlBronza\\Category\\Facades\\Category"
             }
         }
     }
