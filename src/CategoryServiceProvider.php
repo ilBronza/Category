@@ -15,8 +15,8 @@ class CategoryServiceProvider extends ServiceProvider
     {
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ilbronza');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'ilbronza');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
@@ -32,6 +32,11 @@ class CategoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/category.php', 'category');
+
+
+        $this->app->make('IlBronza\Category\Http\Controllers\CrudCategoryController');        
+
+        $this->app->make('IlBronza\Category\Http\Controllers\CrudCategoryChildrenController');       
 
         // Register the service the package provides.
         $this->app->singleton('category', function ($app) {
