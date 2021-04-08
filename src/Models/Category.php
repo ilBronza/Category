@@ -1,6 +1,6 @@
 <?php
 
-namespace IlBronza\Category\Models;
+namespace ilBronza\Category\Models;
 
 use App\Models\Traits\Relationships\ParentingTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

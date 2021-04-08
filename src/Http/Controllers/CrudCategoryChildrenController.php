@@ -14,7 +14,7 @@ use ilBronza\CRUD\Traits\CRUDEditUpdateTrait;
 use ilBronza\CRUD\Traits\CRUDIndexTrait;
 use ilBronza\CRUD\Traits\CRUDRelationshipTrait;
 use ilBronza\CRUD\Traits\CRUDShowTrait;
-use IlBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryChildParametersTrait;
+use ilBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryChildParametersTrait;
 
 class CrudCategoryChildrenController extends BelongsToCRUDController
 {

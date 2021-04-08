@@ -2,8 +2,8 @@
 
 namespace ilBronza\Category\Http\Controllers;
 
-use IlBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
-use IlBronza\Category\Models\Category;
+use ilBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
+use ilBronza\Category\Models\Category;
 use Illuminate\Http\Request;
 use ilBronza\CRUD\CRUD;
 use ilBronza\CRUD\Traits\CRUDBelongsToManyTrait;
@@ -67,7 +67,7 @@ class CrudCategoryController extends CRUD
     public $showMethodRelationships = ['children'];
 
     protected $relationshipsControllers = [
-        'children' => '\IlBronza\Category\Http\Controllers\CrudCategoryController'
+        'children' => '\ilBronza\Category\Http\Controllers\CrudCategoryController'
     ];
 
     /**
@@ -77,7 +77,7 @@ class CrudCategoryController extends CRUD
 
     /**
         protected $relationshipsControllers = [
-        'permissions' => '\IlBronza\AccountManager\Http\Controllers\PermissionController'
+        'permissions' => '\ilBronza\AccountManager\Http\Controllers\PermissionController'
     ];
     **/
 
