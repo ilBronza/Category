@@ -1,6 +1,6 @@
 <?php
 
-namespace IlBronza\Category;
+namespace ilBronza\Category;
 
 class Category
 {
