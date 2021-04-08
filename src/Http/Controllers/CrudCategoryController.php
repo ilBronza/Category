@@ -2,9 +2,8 @@
 
 namespace ilBronza\Category\Http\Controllers;
 
-use ilBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
-use ilBronza\Category\Models\Category;
-use ilBronza\Datatables\Datatables;
+use IlBronza\Category\Http\Controllers\CRUDTraits\CRUDCategoryParametersTrait;
+use IlBronza\Category\Models\Category;
 use Illuminate\Http\Request;
 use ilBronza\CRUD\CRUD;
 use ilBronza\CRUD\Traits\CRUDBelongsToManyTrait;
@@ -17,6 +16,7 @@ use ilBronza\CRUD\Traits\CRUDPlainIndexTrait;
 use ilBronza\CRUD\Traits\CRUDRelationshipTrait;
 use ilBronza\CRUD\Traits\CRUDShowTrait;
 use ilBronza\CRUD\Traits\CRUDUpdateEditorTrait;
+use ilBronza\Datatables\Datatables;
 
 class CrudCategoryController extends CRUD
 {
