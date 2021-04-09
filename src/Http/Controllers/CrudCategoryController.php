@@ -96,11 +96,50 @@ class CrudCategoryController extends CRUD
 
     public function reorder(Request $request)
     {
-        $elements = $this->getIndexElements();
+        // $elements = $this->getIndexElements();
+        $elements = Category::all();
+        // dd($elements);
+        $elements = $this->parseTree($elements);
 
         $action = route('categories.stroreReorder');
 
         return view('crud::reorder', compact('elements', 'action'));
+    }
+
+    //https://stackoverflow.com/questions/2915748/convert-a-series-of-parent-child-relationships-into-a-hierarchical-tree
+    function parseTree($tree, $parent_id = null) {
+        $return = collect();
+        # Traverse the tree and search for direct children of the root
+        foreach($tree as $id => $element) {
+            # A direct child is found
+            if($element->parent_id == $parent_id) {
+                # Remove item from tree (we don't need to traverse this again)
+                // unset($tree[$id]);
+                $tree->forget($id);
+                # Append the child into result array and parse its children
+                $element->children = $this->parseTree($tree, $element->getKey());
+                $return->push($element);
+            }
+        }
+
+        return $return;    
+    }
+
+    function printTree($tree) {
+        if(!is_null($tree) && count($tree) > 0) {
+            echo '<ul>';
+            foreach($tree as $node) {
+                /*$return .= '<div class="uk-margin">
+                    <div class="uk-card uk-card-default uk-card-body uk-card-small">
+                        <span class="uk-sortable-handle uk-margin-small-right" uk-icon="icon: table"></span> '. $node['name'] .'
+                    </div>
+                </div>';*/
+                echo '<li>'.$node['name'];
+                printTree($node['children']);
+                echo '</li>';
+            }
+            echo '</ul>';
+        }
     }
 
     public function stroreReorder(Request $request)
