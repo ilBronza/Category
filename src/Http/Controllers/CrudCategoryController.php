@@ -100,10 +100,11 @@ class CrudCategoryController extends CRUD
         $elements = Category::all();
         // dd($elements);
         $elements = $this->parseTree($elements);
+        // $elements = $elements->sortByDesc('id');
 
         $action = route('categories.stroreReorder');
 
-        return view('crud::reorder', compact('elements', 'action'));
+        return view('crud::reorder_nestable', compact('elements', 'action'));
     }
 
     //https://stackoverflow.com/questions/2915748/convert-a-series-of-parent-child-relationships-into-a-hierarchical-tree
@@ -114,7 +115,6 @@ class CrudCategoryController extends CRUD
             # A direct child is found
             if($element->parent_id == $parent_id) {
                 # Remove item from tree (we don't need to traverse this again)
-                // unset($tree[$id]);
                 $tree->forget($id);
                 # Append the child into result array and parse its children
                 $element->children = $this->parseTree($tree, $element->getKey());
@@ -122,29 +122,31 @@ class CrudCategoryController extends CRUD
             }
         }
 
-        return $return;    
-    }
-
-    function printTree($tree) {
-        if(!is_null($tree) && count($tree) > 0) {
-            echo '<ul>';
-            foreach($tree as $node) {
-                /*$return .= '<div class="uk-margin">
-                    <div class="uk-card uk-card-default uk-card-body uk-card-small">
-                        <span class="uk-sortable-handle uk-margin-small-right" uk-icon="icon: table"></span> '. $node['name'] .'
-                    </div>
-                </div>';*/
-                echo '<li>'.$node['name'];
-                printTree($node['children']);
-                echo '</li>';
-            }
-            echo '</ul>';
-        }
+        return $return->sortBy('sorting_index');    
     }
 
     public function stroreReorder(Request $request)
     {
-        
+        // dd($request->all());
+        if ($request->filled('parent_id')) {
+            if($request->filled('element_id')){
+                if(0 == $parent_id = $request->input('parent_id'))
+                    $parent_id = null;
+
+                $item = Category::findOrFail($request->input('element_id'));
+                $item->parent_id = $parent_id;
+                $item->save();
+            }
+        }
+
+        if ($request->filled('siblings')) {
+            $siblings = json_decode($request->input('siblings'));
+            foreach ($siblings as $index => $sibling) {
+                $item = Category::findOrFail($sibling);
+                $item->sorting_index = $index;
+                $item->save();
+            }
+        }
     }
 
     /**
