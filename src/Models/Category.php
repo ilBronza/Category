@@ -19,6 +19,8 @@ class Category extends Model
     use CRUDRelationshipModelTrait;
     use ParentingTrait;
 
+    protected  $fillable= [ 'name', 'slug', 'parent_id'];
+
     public function getParentPossibleValuesArray()
     {
     	return cache()->remember(

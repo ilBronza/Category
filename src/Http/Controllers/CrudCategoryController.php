@@ -96,13 +96,10 @@ class CrudCategoryController extends CRUD
 
     public function reorder(Request $request)
     {
-        $categories = Category::factory()->count(10)->make();
-        dd($categories);
-        
         // $elements = $this->getIndexElements();
         // $elements = Category::orderBy('sorting_index', 'asc')->get();
         $elements = Category::all();
-        $elements = $this->parseTree($tree = $elements, $parent_id = null, $level = 0, $maxDepth = 1);
+        $elements = $this->parseTree($tree = $elements, $parent_id = null, $level = 0, $maxDepth = 5);
         // dd($elements);
 
         $action = route('categories.stroreReorder');
@@ -117,16 +114,13 @@ class CrudCategoryController extends CRUD
         
         # Traverse the tree and search for direct children of the root
         foreach($tree as $id => $element) {
-            echo $level . " ".$element->name. " id:".$element->id."<br>";
             # A direct child is found
             if($element->parent_id == $parent_id) {
-                echo "child trovato <br>";
                 # Remove item from tree (we don't need to traverse this again)
                 $tree->forget($id);
                 // dd($tree);
                 # Append the child into result array and parse its children
                 if($level <= $maxDepth){
-                    echo "-->$level chiamo children <br>";
                     $element->childs = $this->parseTree($tree, $element->getKey(), $level, $maxDepth);
                 }
 
