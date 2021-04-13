@@ -96,11 +96,14 @@ class CrudCategoryController extends CRUD
 
     public function reorder(Request $request)
     {
+        $categories = Category::factory()->count(10)->make();
+        dd($categories);
+        
         // $elements = $this->getIndexElements();
+        // $elements = Category::orderBy('sorting_index', 'asc')->get();
         $elements = Category::all();
+        $elements = $this->parseTree($tree = $elements, $parent_id = null, $level = 0, $maxDepth = 1);
         // dd($elements);
-        $elements = $this->parseTree($elements);
-        // $elements = $elements->sortByDesc('id');
 
         $action = route('categories.stroreReorder');
 
@@ -108,21 +111,30 @@ class CrudCategoryController extends CRUD
     }
 
     //https://stackoverflow.com/questions/2915748/convert-a-series-of-parent-child-relationships-into-a-hierarchical-tree
-    function parseTree($tree, $parent_id = null) {
+    function parseTree($tree, $parent_id = null, $level = 0, $maxDepth = 5) {
         $return = collect();
+        $level++;
+        
         # Traverse the tree and search for direct children of the root
         foreach($tree as $id => $element) {
+            echo $level . " ".$element->name. " id:".$element->id."<br>";
             # A direct child is found
             if($element->parent_id == $parent_id) {
+                echo "child trovato <br>";
                 # Remove item from tree (we don't need to traverse this again)
                 $tree->forget($id);
+                // dd($tree);
                 # Append the child into result array and parse its children
-                $element->children = $this->parseTree($tree, $element->getKey());
+                if($level <= $maxDepth){
+                    echo "-->$level chiamo children <br>";
+                    $element->childs = $this->parseTree($tree, $element->getKey(), $level, $maxDepth);
+                }
+
                 $return->push($element);
             }
         }
-
-        return $return->sortBy('sorting_index');    
+ 
+        return $return->sortBy('sorting_index');     
     }
 
     public function stroreReorder(Request $request)
