@@ -18,7 +18,8 @@ trait CRUDCategoryParametersTrait
                 'children' => [
                     'type' => 'relations.hasMany',
                     'routeBasename' => 'categories'
-                ]
+                ],
+                'mySelfDelete' => 'links.delete'
             ]
         ]
     ];
@@ -27,7 +28,7 @@ trait CRUDCategoryParametersTrait
         'common' => [
             'default' => [
                 'name' => ['text' => 'string|required|max:191'],
-                'slug' => ['text' => 'string|required|max:191|unique:categories'],
+                'slug' => ['text' => 'string|nullable|max:191|unique:categories'],
                 'parent' => [
                     'type' => 'select',
                     'multiple' => false,

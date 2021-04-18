@@ -8,10 +8,12 @@ use IlBronza\CRUD\Traits\Model\CRUDModelTrait;
 use IlBronza\CRUD\Traits\Model\CRUDRelationshipModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     use CRUDSluggableTrait;
 
@@ -20,6 +22,8 @@ class Category extends Model
     use ParentingTrait;
 
     protected  $fillable= [ 'name', 'slug', 'parent_id'];
+
+    public $deletingRelationships = ['children'];
 
     public function getParentPossibleValuesArray()
     {
