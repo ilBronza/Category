@@ -11,14 +11,17 @@ Route::group([
 	{
 		Route::resource('categories', 'CrudCategoryController');
 
-		//START ROUTES PER REORDERING
-		Route::get('categories-reorder', 'CrudCategoryController@reorder')->name('categories.reorder');
-		Route::post('categories-reorder', 'CrudCategoryController@stroreReorder')->name('categories.stroreReorder');
-		//STOP ROUTES PER REORDERING
-
 		Route::prefix('parent/{parent}')->group(function () {
 			Route::resource('categories', 'CrudCategoryChildrenController')->names('categories.children');
 		});
+
+
+
+		//START ROUTES PER REORDERING
+		Route::get('categories-reorder/{category?}', 'CrudCategoryController@reorder')->name('categories.reorder');
+		Route::post('categories-reorder', 'CrudCategoryController@stroreReorder')->name('categories.stroreReorder');
+		//STOP ROUTES PER REORDERING
+
 	}
 );
 
