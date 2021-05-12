@@ -46,7 +46,7 @@ class CrudCategoryController extends CRUD
     public $modelClass = Category::class;
 
     /**
-     * http methods allowed. remove non existing methods to get a 403 when called by routes
+     * http methods allowed. remove non existing methods to get a 403
      **/
     public $allowedMethods = [
         'index',
