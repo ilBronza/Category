@@ -4,5 +4,25 @@ namespace IlBronza\Category;
 
 class Category
 {
-    // Build wonderful things
+	public function manageMenuButtons()
+	{
+        if(! $menu = app('menu'))
+            return;
+
+        $button = $menu->provideButton([
+                'text' => 'generals.settings',
+                'name' => 'settings',
+                'icon' => 'gear',
+                'roles' => ['administrator']
+            ]);
+
+        $categoryButton = $menu->createButton([
+            'name' => 'categories',
+            'icon' => 'box-archive',
+            'text' => 'categories.manage',
+            'href' => route('categories.index'),
+        ]);
+
+        $button->addChild($categoryButton);
+	}
 }
