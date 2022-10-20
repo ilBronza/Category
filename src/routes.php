@@ -1,5 +1,6 @@
 <?php
 
+use IlBronza\Category\Http\Controllers\CrudCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -9,7 +10,7 @@ Route::group([
 	],
 	function()
 	{
-		Route::resource('categories', 'CrudCategoryController');
+		Route::resource('categories', CrudCategoryController::class);
 
 		Route::prefix('parent/{parent}')->group(function () {
 			Route::resource('categories', 'CrudCategoryChildrenController')->names('categories.children');
