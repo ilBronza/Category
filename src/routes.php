@@ -19,8 +19,8 @@ Route::group([
 
 
 		//START ROUTES PER REORDERING
-		Route::get('categories-reorder/{category?}', 'CrudCategoryController@reorder')->name('categories.reorder');
-		Route::post('categories-reorder', 'CrudCategoryController@stroreReorder')->name('categories.stroreReorder');
+		Route::get('categories-reorder/{category?}', [CrudCategoryController::class, 'reorder'])->name('categories.reorder');
+		Route::post('categories-reorder', [CrudCategoryController::class, 'storeReorder'])->name('categories.storeReorder');
 		//STOP ROUTES PER REORDERING
 
 	}

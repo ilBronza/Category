@@ -14,6 +14,7 @@ trait CRUDCategoryParametersTrait
                 'mySelfSee' => 'links.see',
                 'name' => 'flat',
                 'slug' => 'flat',
+                'collection' => 'flat',
                 'parent.name' => 'flat',
                 'children' => [
                     'type' => 'relations.hasMany',
@@ -29,10 +30,11 @@ trait CRUDCategoryParametersTrait
             'default' => [
                 'name' => ['text' => 'string|required|max:191'],
                 'slug' => ['text' => 'string|nullable|max:191|unique:categories'],
+                'collection' => ['text' => 'string|nullable|max:255'],
                 'parent' => [
                     'type' => 'select',
                     'multiple' => false,
-                    'rules' => 'integer|nullable|exists:categories,id',
+                    'rules' => 'string|max:191|nullable|exists:categories,slug',
                     'relation' => 'parent'
                 ]
             ]
