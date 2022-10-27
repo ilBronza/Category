@@ -11,7 +11,7 @@ class Category extends SluggableBaseModel
 
     static $parentKeyName = 'parent_slug';
 
-    protected  $fillable = [ 'name', 'slug', 'parent_slug'];
+    protected  $fillable = ['name', 'slug', 'parent_slug'];
 
     public $deletingRelationships = ['children'];
 
