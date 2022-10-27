@@ -57,7 +57,7 @@ class CrudCategoryController extends CRUD
         'store',
         'destroy',
         'reorder',
-        'stroreReorder'
+        'storeReorder'
     ];
 
     /**

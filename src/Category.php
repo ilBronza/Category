@@ -21,6 +21,14 @@ class Category
             'icon' => 'box-archive',
             'text' => 'categories.manage',
             'href' => route('categories.index'),
+            'children' => [
+                [
+                    'name' => 'categories-reorder',
+                    'icon' => 'box-archive',
+                    'text' => 'categories.reorder',
+                    'href' => route('categories.reorder')
+                ]
+            ]
         ]);
 
         $button->addChild($categoryButton);
