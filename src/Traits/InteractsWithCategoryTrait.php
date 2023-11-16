@@ -6,6 +6,12 @@ trait InteractsWithCategoryTrait
 {
 	/**
 	 * retrieve model category class name
+	 * 
+	 * questo serve per sapere che model category usare,
+	 * se voglio avere category diverse
+	 * a seconda delle entità per le quali servono
+	 * 
+	 * 
 	 * public function getCategoryModel()
 	 * {
 	 * 	return config('filecabinet.categories.model');
@@ -20,6 +26,7 @@ trait InteractsWithCategoryTrait
 	 * retrieve category collection name
 	 * public function getCategoriesCollection()
 	 * {
+	 * 
 	 * 	return config('filecabinet.categories.collection');
 	 * 	return 'filecabinet'
 	 * }
