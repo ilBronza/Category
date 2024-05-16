@@ -2,6 +2,11 @@
 
 namespace IlBronza\Category\Traits;
 
+use IlBronza\Category\Models\Categorizable;
+use IlBronza\Category\Models\Category;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+
 trait InteractsWithCategoryTrait
 {
 	/**
@@ -35,29 +40,49 @@ trait InteractsWithCategoryTrait
 	*/
 	abstract public function getCategoriesCollection() : ? string ;
 
-	public function categories()
+	public function categories() : MorphToMany
 	{
 		return $this->morphToMany(
 			$this->getCategoryModel(),
-			'categorizable'
+			'categorizable',
+			config('category.models.categorizable.table'),
+		)->using(Categorizable::getProjectClassName());
+	}
+
+	public function category() : BelongsTo
+	{
+		return $this->belongsTo(
+			$this->getCategoryModel()
 		);
 	}
 
-	public function getPossibleCategoriesValuesArray()
+	public function getRecursiveChildrenArray(Category $category, int $level = 0) : array
 	{
-		$nameField = $this->getCategoryModel()::getNameFieldName();
-		$keyField = $this->getCategoryModel()::make()->getKeyName();
+		$result = [];
 
-		$result = $this->getCategoryModel()::collection(
-						$this->getCategoriesCollection()
-					)
-					->select($nameField, $keyField)
-					->get();
+		$levelString = $level ? '+-' : '';
 
-		return $result->pluck(
-			$nameField,
-			$keyField
-		)->toArray();
+		for($i = 1; $i < $level; $i ++)
+			$levelString .= '--';
+
+		$result[$category->getKey()] = $levelString . $category->getName();
+
+		foreach($category->getRecursiveChildren() as $_category)
+			$result = array_merge($result, $this->getRecursiveChildrenArray($_category, $level + 1));
+
+		return $result;
+	}
+
+	public function getPossibleCategoriesValuesArray() : array
+	{
+		$categoryTree = Category::getProjectClassName():: staticGetTree();
+
+		$result = [];
+
+		foreach($categoryTree as $category)
+			$result = array_merge($result, $this->getRecursiveChildrenArray($category));
+
+		return $result;
 	}
 
 }

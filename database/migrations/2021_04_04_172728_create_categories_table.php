@@ -13,14 +13,15 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->string('slug')->primary();
+        Schema::create(config('category.models.category.table'), function (Blueprint $table) {
+            $table->uuid('id')->primary();
+
+            $table->string('slug');
             $table->string('name');
 
             $table->string('collection')->nullable();
 
-            // $table->string('parent_slug')->nullable();
-            // $table->foreign('parent_slug')->references('slug')->on('categories');
+            $table->uuid('parent_id')->nullable();
 
             $table->json('cached_children')->nullable();
             $table->timestamp('children_parsed_at')->nullable();
@@ -28,6 +29,10 @@ class CreateCategoriesTable extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+        });
+
+        Schema::table(config('category.models.category.table'), function (Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on(config('category.models.category.table'));
         });
     }
 
@@ -38,6 +43,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists(config('category.models.category.table'));
     }
 }

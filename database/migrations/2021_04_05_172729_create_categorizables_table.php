@@ -13,13 +13,13 @@ class CreateCategorizablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorizables', function (Blueprint $table) {
-            $table->uuid()->primary();
+        Schema::create(config('category.models.categorizable.table'), function (Blueprint $table) {
+            $table->uuid('id')->primary();
 
-            $table->string('category_slug')->index();
-            $table->foreign('category_slug')->references('slug')->on('categories');
+            $table->uuid('category_id')->index();
+            $table->foreign('category_id')->references('id')->on(config('category.models.category.table'));
 
-            $table->morphs('categorizable');
+            $table->nullableUlidMorphs('categorizable', 'categorizable_index');
 
             $table->softDeletes();
             $table->timestamps();
@@ -33,6 +33,6 @@ class CreateCategorizablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorizables');
+        Schema::dropIfExists(config('category.models.categorizable.table'));
     }
 }

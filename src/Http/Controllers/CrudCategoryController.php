@@ -40,6 +40,18 @@ class CrudCategoryController extends CRUD
     use CRUDRelationshipTrait;
     use CRUDBelongsToManyTrait;
 
+    public $configModelClassName = 'category';
+
+    public function getRouteBaseNamePrefix() : ? string
+    {
+        return config('category.routePrefix');
+    }
+
+    public function setModelClass()
+    {
+        $this->modelClass = config("category.models.{$this->configModelClassName}.class");
+    }
+
     /**
      * subject model class full path
      **/
@@ -59,32 +71,6 @@ class CrudCategoryController extends CRUD
         'reorder',
         'storeReorder'
     ];
-
-    /**
-     * to override show view use full view name
-     **/
-    //public $showView = 'products.showPartial';
-
-    // public $guardedEditDBFields = ['id', 'created_at', 'updated_at', 'deleted_at'];
-    // public $guardedCreateDBFields = ['id', 'created_at', 'updated_at', 'deleted_at'];
-    public $guardedShowDBFields = ['id', 'created_at', 'updated_at', 'deleted_at'];
-
-    public $showMethodRelationships = ['children'];
-
-    protected $relationshipsControllers = [
-        'children' => '\IlBronza\Category\Http\Controllers\CrudCategoryController'
-    ];
-
-    /**
-     * relations called to be automatically shown on 'show' method
-     **/
-    //public $showMethodRelationships = ['posts', 'users', 'operations'];
-
-    /**
-        protected $relationshipsControllers = [
-        'permissions' => '\IlBronza\AccountManager\Http\Controllers\PermissionController'
-    ];
-    **/
 
 
     /**

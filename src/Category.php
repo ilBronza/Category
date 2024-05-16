@@ -2,8 +2,15 @@
 
 namespace IlBronza\Category;
 
-class Category
+use IlBronza\CRUD\Providers\RouterProvider\RoutedObjectInterface;
+use IlBronza\CRUD\Traits\IlBronzaPackages\IlBronzaPackagesTrait;
+
+class Category implements RoutedObjectInterface
 {
+    use IlBronzaPackagesTrait;
+
+    static $packageConfigPrefix = 'category';
+
 	public function manageMenuButtons()
 	{
         if(! $menu = app('menu'))
@@ -20,13 +27,13 @@ class Category
             'name' => 'categories',
             'icon' => 'box-archive',
             'text' => 'categories.manage',
-            'href' => route('categories.index'),
+            'href' => app('category')->route('categories.index'),
             'children' => [
                 [
                     'name' => 'categories-reorder',
                     'icon' => 'box-archive',
                     'text' => 'categories.reorder',
-                    'href' => route('categories.reorder')
+                    'href' => app('category')->route('categories.reorder')
                 ]
             ]
         ]);

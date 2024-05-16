@@ -2,24 +2,39 @@
 
 namespace IlBronza\Category\Models;
 
-use IlBronza\CRUD\Models\SluggableBaseModel;
+use IlBronza\CRUD\Models\BaseModel;
+use IlBronza\CRUD\Traits\CRUDSluggableTrait;
 use IlBronza\CRUD\Traits\Model\CRUDParentingTrait;
+use IlBronza\CRUD\Traits\Model\CRUDUseUuidTrait;
+use IlBronza\CRUD\Traits\Model\PackagedModelsTrait;
+use IlBronza\Category\Models\Traits\CategoryInteractsWithFilecabinetTrait;
+use IlBronza\Category\Models\Traits\CategoryRelationsAndScopesTrait;
 
-class Category extends SluggableBaseModel
+class Category extends BaseModel
 {
+    use PackagedModelsTrait;
+    use CRUDUseUuidTrait;
+    use CRUDSluggableTrait;
     use CRUDParentingTrait;
 
-    static $parentKeyName = 'parent_slug';
+    use CategoryRelationsAndScopesTrait;
+    use CategoryInteractsWithFilecabinetTrait;
 
-    protected  $fillable = ['name', 'slug', 'parent_slug'];
+    static $packageConfigPrefix = 'category';
+    public ? string $translationFolderPrefix = 'category';
 
+    static $modelConfigPrefix = 'category';
     public $deletingRelationships = ['children'];
 
-    public function scopeCollection($query, string $collection = null)
-    {
-    	if($collection)
-    		$query->where('collection', $collection);
 
-    	return $query;
-    }
+
+
+
+
+
+
+
+
+
+
 }
