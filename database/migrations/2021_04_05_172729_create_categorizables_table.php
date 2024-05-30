@@ -16,7 +16,7 @@ class CreateCategorizablesTable extends Migration
         Schema::create(config('category.models.categorizable.table'), function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->uuid('category_id')->index();
+            $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on(config('category.models.category.table'));
 
             $table->nullableUlidMorphs('categorizable', 'categorizable_index');

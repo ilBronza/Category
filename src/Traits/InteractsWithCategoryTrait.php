@@ -5,6 +5,8 @@ namespace IlBronza\Category\Traits;
 use IlBronza\Category\Models\Categorizable;
 use IlBronza\Category\Models\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait InteractsWithCategoryTrait
@@ -56,6 +58,25 @@ trait InteractsWithCategoryTrait
 		);
 	}
 
+	public function categorizables() : MorphMany
+	{
+		return $this->morphMany(
+			Categorizable::getProjectClassName(),
+			'categorizable'
+		);
+	}
+
+	public function scopeByGeneralCategory($query, string|Category $category)
+	{
+		if(! is_string($category))
+			$category = $category->getKey();
+
+		return $query->whereHas('categorizables', function($query) use($category)
+		{
+			$query->where('category_id', $category);
+		});
+	}
+
 	public function getRecursiveChildrenArray(Category $category, int $level = 0) : array
 	{
 		$result = [];
@@ -68,19 +89,19 @@ trait InteractsWithCategoryTrait
 		$result[$category->getKey()] = $levelString . $category->getName();
 
 		foreach($category->getRecursiveChildren() as $_category)
-			$result = array_merge($result, $this->getRecursiveChildrenArray($_category, $level + 1));
+			$result = $result + $this->getRecursiveChildrenArray($_category, $level + 1);
 
 		return $result;
 	}
 
 	public function getPossibleCategoriesValuesArray() : array
 	{
-		$categoryTree = Category::getProjectClassName():: staticGetTree();
+		$categoryTree = Category::getProjectClassName()::staticGetTree();
 
 		$result = [];
 
 		foreach($categoryTree as $category)
-			$result = array_merge($result, $this->getRecursiveChildrenArray($category));
+			$result = $result + $this->getRecursiveChildrenArray($category);
 
 		return $result;
 	}

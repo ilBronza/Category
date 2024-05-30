@@ -14,14 +14,14 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create(config('category.models.category.table'), function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id('id');
 
             $table->string('slug');
             $table->string('name');
 
             $table->string('collection')->nullable();
 
-            $table->uuid('parent_id')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
 
             $table->json('cached_children')->nullable();
             $table->timestamp('children_parsed_at')->nullable();
