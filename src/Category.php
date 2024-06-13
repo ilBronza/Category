@@ -26,15 +26,27 @@ class Category implements RoutedObjectInterface
         $categoryButton = $menu->createButton([
             'name' => 'categories',
             'icon' => 'box-archive',
-            'text' => 'categories.manage',
+            'text' => 'categories::categories.manage',
             'href' => app('category')->route('categories.index'),
             'children' => [
                 [
+                    'name' => 'categories-index',
+                    'icon' => 'list',
+                    'text' => 'categories::categories.index',
+                    'href' => app('category')->route('categories.index')
+                ],
+                [
                     'name' => 'categories-reorder',
                     'icon' => 'box-archive',
-                    'text' => 'categories.reorder',
+                    'text' => 'categories::categories.reorder',
                     'href' => app('category')->route('categories.reorder')
-                ]
+                ],
+                [
+                    'name' => 'categories-create',
+                    'icon' => 'plus',
+                    'text' => 'categories::categories.create',
+                    'href' => app('category')->route('categories.create')
+                ],
             ]
         ]);
 

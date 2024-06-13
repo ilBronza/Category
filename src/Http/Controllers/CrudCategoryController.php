@@ -3,6 +3,7 @@
 namespace IlBronza\Category\Http\Controllers;
 
 use IlBronza\CRUD\CRUD;
+use IlBronza\CRUD\Http\Controllers\BasePackageTrait;
 use IlBronza\CRUD\Traits\CRUDBelongsToManyTrait;
 use IlBronza\CRUD\Traits\CRUDCreateStoreTrait;
 use IlBronza\CRUD\Traits\CRUDDeleteTrait;
@@ -23,6 +24,8 @@ use Illuminate\Support\Str;
 
 class CrudCategoryController extends CRUD
 {
+    use BasePackageTrait;
+
     use CRUDCategoryParametersTrait;
 
     use CRUDNestableTrait;

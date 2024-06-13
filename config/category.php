@@ -1,6 +1,14 @@
 <?php
 
+use IlBronza\Category\Http\Controllers\CategoryCreateStoreController;
+use IlBronza\Category\Http\Controllers\CategoryDestroyController;
+use IlBronza\Category\Http\Controllers\CategoryEditUpdateController;
+use IlBronza\Category\Http\Controllers\CategoryIndexController;
+use IlBronza\Category\Http\Controllers\CategoryShowController;
 use IlBronza\Category\Http\Controllers\CrudCategoryController;
+use IlBronza\Category\Http\Controllers\Parameters\Datatables\CategoryFieldsGroupParametersFile;
+use IlBronza\Category\Http\Controllers\Parameters\Fieldsets\CategoryCreateStoreFieldsetsParameters;
+use IlBronza\Category\Http\Controllers\Parameters\RelationshipsManagers\CategoryRelationManager;
 use IlBronza\Category\Models\Categorizable;
 use IlBronza\Category\Models\Category;
 
@@ -11,26 +19,27 @@ return [
         'category' => [
             'class' => Category::class,
             'table' => 'categories__categories',
-            // 'fieldsGroupsFiles' => [
-            //     'index' => FormFieldsGroupParametersFile::class
-            // ],
-            // 'parametersFiles' => [
-            //     'create' => FormCreateStoreFieldsetsParameters::class,
-            //     'show' => FormShowFieldsetsParameters::class
-            // ],
-            // 'relationshipsManagerClasses' => [
-            //     'show' => FormRelationManager::class
-            // ],
+            'fieldsGroupsFiles' => [
+                'index' => CategoryFieldsGroupParametersFile::class,
+                'related' => CategoryFieldsGroupParametersFile::class
+            ],
+            'parametersFiles' => [
+                'create' => CategoryCreateStoreFieldsetsParameters::class,
+                'show' => CategoryCreateStoreFieldsetsParameters::class
+            ],
+            'relationshipsManagerClasses' => [
+                'show' => CategoryRelationManager::class
+            ],
             'controllers' => [
                 'crud' => CrudCategoryController::class,
 
-                // 'index' => FormIndexController::class,
-                // 'create' => FormCreateStoreController::class,
-                // 'store' => FormCreateStoreController::class,
-                // 'show' => FormShowController::class,
-                // 'edit' => FormEditUpdateController::class,
-                // 'update' => FormEditUpdateController::class,
-                // 'destroy' => FormDestroyController::class,
+                'index' => CategoryIndexController::class,
+                'create' => CategoryCreateStoreController::class,
+                'store' => CategoryCreateStoreController::class,
+                'show' => CategoryShowController::class,
+                'edit' => CategoryEditUpdateController::class,
+                'update' => CategoryEditUpdateController::class,
+                'destroy' => CategoryDestroyController::class,
             ]
         ],
         'categorizable' => [

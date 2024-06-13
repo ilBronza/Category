@@ -27,6 +27,10 @@ class Category extends BaseModel
     public $deletingRelationships = ['children'];
 
 
+    public function getRelatedCategories()
+    {
+        return $this->children()->with('parent', 'children')->get();
+    }
 
 
 

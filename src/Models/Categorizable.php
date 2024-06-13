@@ -2,6 +2,7 @@
 
 namespace IlBronza\Category\Models;
 
+use IlBronza\Buttons\Button;
 use IlBronza\CRUD\Traits\Model\CRUDUseUuidTrait;
 use IlBronza\CRUD\Traits\Model\PackagedModelsTrait;
 use IlBronza\Category\Models\Category;
@@ -29,4 +30,15 @@ class Categorizable extends MorphPivot
     {
         return $this->morphTo();
     }
+
+    public function getReorderButton() : Button
+    {
+        return Button::create(                    [
+            'name' => 'categories-reorder',
+            'icon' => 'box-archive',
+            'text' => 'categories::categories.reorder',
+            'href' => app('category')->route('categories.reorder')
+        ]);
+    }
+
 }
