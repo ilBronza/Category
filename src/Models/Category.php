@@ -13,7 +13,7 @@ use IlBronza\Category\Models\Traits\CategoryRelationsAndScopesTrait;
 class Category extends BaseModel
 {
     use PackagedModelsTrait;
-    // use CRUDUseUuidTrait;
+    use CRUDUseUuidTrait;
     use CRUDSluggableTrait;
     use CRUDParentingTrait;
 

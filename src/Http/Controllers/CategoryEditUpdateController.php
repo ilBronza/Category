@@ -18,6 +18,10 @@ class CategoryEditUpdateController extends CategoryCRUD
 
     public function edit(string $category)
     {
+        dd($category);
+
+        dd($category);
+
         $category = $this->findModel($category);
 
         return $this->_edit($category);

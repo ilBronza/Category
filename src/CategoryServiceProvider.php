@@ -34,9 +34,9 @@ class CategoryServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/category.php', 'category');
 
 
-        $this->app->make('IlBronza\Category\Http\Controllers\CrudCategoryController');        
+        // $this->app->make('IlBronza\Category\Http\Controllers\CrudCategoryController');        
 
-        $this->app->make('IlBronza\Category\Http\Controllers\CrudCategoryChildrenController');       
+        // $this->app->make('IlBronza\Category\Http\Controllers\CrudCategoryChildrenController');       
 
         // Register the service the package provides.
         $this->app->singleton('category', function ($app) {

@@ -4,6 +4,7 @@ use IlBronza\Category\Http\Controllers\CategoryCreateStoreController;
 use IlBronza\Category\Http\Controllers\CategoryDestroyController;
 use IlBronza\Category\Http\Controllers\CategoryEditUpdateController;
 use IlBronza\Category\Http\Controllers\CategoryIndexController;
+use IlBronza\Category\Http\Controllers\CategoryReorderController;
 use IlBronza\Category\Http\Controllers\CategoryShowController;
 use IlBronza\Category\Http\Controllers\CrudCategoryController;
 use IlBronza\Category\Http\Controllers\Parameters\Datatables\CategoryFieldsGroupParametersFile;
@@ -31,7 +32,8 @@ return [
                 'show' => CategoryRelationManager::class
             ],
             'controllers' => [
-                'crud' => CrudCategoryController::class,
+                // 'crud' => CrudCategoryController::class,
+                'reorder' => CategoryReorderController::class,
 
                 'index' => CategoryIndexController::class,
                 'create' => CategoryCreateStoreController::class,

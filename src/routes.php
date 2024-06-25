@@ -29,8 +29,8 @@ Route::group([
 
 
 		//START ROUTES PER REORDERING
-		Route::get('categories-reorder/{category?}', [Category::getController('category', 'crud'), 'reorder'])->name('categories.reorder');
-		Route::post('categories-reorder', [Category::getController('category', 'crud'), 'storeReorder'])->name('categories.storeReorder');
+		Route::get('categories-reorder/{category?}', [Category::getController('category', 'reorder'), 'reorder'])->name('categories.reorder');
+		Route::post('categories-reorder', [Category::getController('category', 'reorder'), 'storeReorder'])->name('categories.storeReorder');
 		//STOP ROUTES PER REORDERING
 
 	}
