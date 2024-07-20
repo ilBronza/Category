@@ -58,6 +58,11 @@ trait InteractsWithCategoryTrait
 		);
 	}
 
+	public function getCategory() : ? Category
+	{
+		return $this->category;
+	}
+
 	public function categorizables() : MorphMany
 	{
 		return $this->morphMany(

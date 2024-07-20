@@ -14,14 +14,14 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create(config('category.models.category.table'), function (Blueprint $table) {
-            $table->id('id');
+            $table->uuid('id')->primary();
 
             $table->string('slug');
             $table->string('name');
 
             $table->string('collection')->nullable();
 
-            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->uuid('parent_id')->nullable();
 
             $table->json('cached_children')->nullable();
             $table->timestamp('children_parsed_at')->nullable();
@@ -31,9 +31,9 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table(config('category.models.category.table'), function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on(config('category.models.category.table'));
-        });
+        // Schema::table(config('category.models.category.table'), function (Blueprint $table) {
+        //     $table->foreign('parent_id')->references('id')->on(config('category.models.category.table'));
+        // });
     }
 
     /**
