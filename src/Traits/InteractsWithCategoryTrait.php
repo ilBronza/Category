@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Collection;
 
 trait InteractsWithCategoryTrait
 {
@@ -111,4 +112,8 @@ trait InteractsWithCategoryTrait
 		return $result;
 	}
 
+	static function getByDirectCategory(Category $category) : Collection
+	{
+		return static::where('category_id', $category->getKey())->get();
+	}
 }

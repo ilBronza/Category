@@ -2,6 +2,9 @@
 
 namespace IlBronza\Category;
 
+use IlBronza\Category\Models\Categorizable;
+use IlBronza\Category\Models\Category as CategoryModel;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class CategoryServiceProvider extends ServiceProvider
@@ -13,7 +16,12 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'categories');
+		Relation::morphMap([
+			'Category' => CategoryModel::getProjectClassname(),
+			'Categorizable' => Categorizable::getProjectClassname(),
+		]);
+
+		$this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'categories');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'ilbronza');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes.php');

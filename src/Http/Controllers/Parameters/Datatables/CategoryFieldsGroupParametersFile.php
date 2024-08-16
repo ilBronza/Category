@@ -15,7 +15,7 @@ class CategoryFieldsGroupParametersFile extends FieldsGroupParametersFile
                 'mySelfPrimary' => 'primary',
                 'mySelfEdit' => 'links.edit',
                 'mySelfSee' => 'links.see',
-                'mySelfLink' => 'links.clone',
+//                'mySelfLink' => 'links.clone',
 
                 'name' => 'flat',
                 'slug' => 'flat',
