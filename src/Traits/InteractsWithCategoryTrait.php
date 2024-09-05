@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 
+use function is_array;
+use function is_string;
+
 trait InteractsWithCategoryTrait
 {
 	/**

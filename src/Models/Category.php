@@ -17,6 +17,8 @@ class Category extends BaseModel
     use CRUDSluggableTrait;
     use CRUDParentingTrait;
 
+	protected $keyType = 'string';
+
     use CategoryRelationsAndScopesTrait;
     use CategoryInteractsWithFilecabinetTrait;
 
@@ -25,7 +27,6 @@ class Category extends BaseModel
 
     static $modelConfigPrefix = 'category';
     public $deletingRelationships = ['children'];
-
 
     public function getRelatedCategories()
     {
