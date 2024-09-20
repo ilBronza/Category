@@ -75,6 +75,22 @@ trait InteractsWithCategoryTrait
 		);
 	}
 
+	public function hasDirectCategory(Category|string $category) : bool
+	{
+		if(is_string($category))
+			return $this->category_id == $category;
+
+		return $this->category_id == $category->getKey();
+	}
+
+	public function scopeByCategory($query, string|Category $category)
+	{
+		if(! is_string($category))
+			$category = $category->getKey();
+
+		$query->where('category_id', $category);
+	}
+
 	public function scopeByGeneralCategory($query, string|Category $category)
 	{
 		if(! is_string($category))
