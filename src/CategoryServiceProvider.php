@@ -21,7 +21,7 @@ class CategoryServiceProvider extends ServiceProvider
 			'Categorizable' => Categorizable::getProjectClassName(),
 		]);
 
-		$this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'categories');
+		$this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'category');
 		// $this->loadViewsFrom(__DIR__.'/../resources/views', 'ilbronza');
 		$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 		$this->loadRoutesFrom(__DIR__ . '/routes.php');

@@ -7,8 +7,8 @@ use IlBronza\CRUD\Http\Controllers\BasePackageTrait;
 
 class CategoryCRUD extends CRUD
 {
-    use BasePackageTrait;
+	use BasePackageTrait;
 
-    static $packageConfigPrefix = 'category';
-    public $configModelClassName = 'category';
+	static $packageConfigPrefix = 'category';
+	public $configModelClassName = 'category';
 }
