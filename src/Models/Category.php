@@ -32,4 +32,8 @@ class Category extends BaseModel
 		return $this->children()->with('parent', 'children')->get();
 	}
 
+	public function getPdfTitle() : ? string
+	{
+		return $this->pdf_title;
+	}
 }

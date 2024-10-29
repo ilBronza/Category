@@ -6,4 +6,5 @@ return [
 	'index' => 'Lista',
 	'reorder' => 'Riordina',
 	'create' => 'Crea nuova',
+	'categories' => 'Categorie'
 ];
