@@ -4,11 +4,14 @@ namespace IlBronza\Category;
 
 use IlBronza\Category\Models\Categorizable;
 use IlBronza\Category\Models\Category as CategoryModel;
+use IlBronza\CRUD\Traits\IlBronzaPackages\IlBronzaServiceProviderPackagesTrait;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class CategoryServiceProvider extends ServiceProvider
 {
+	use IlBronzaServiceProviderPackagesTrait;
+
 	/**
 	 * Perform post-registration booting of services.
 	 *

@@ -46,6 +46,11 @@ trait InteractsWithCategoryTrait
 	*/
 	abstract public function getCategoriesCollection() : ? string ;
 
+	public function getCategories() : Collection
+	{
+		return $this->categories;
+	}
+
 	public function categories() : MorphToMany
 	{
 		return $this->morphToMany(
@@ -102,6 +107,19 @@ trait InteractsWithCategoryTrait
 		});
 	}
 
+	public function scopeByGeneralCategories($query, Collection $categories)
+	{
+		return $query->byGeneralCategoriesIds($categories->pluck('id'));
+	}
+
+	public function scopeByGeneralCategoriesIds($query, array|Collection $cagegoriesIds)
+	{
+		return $query->whereHas('categorizables', function($query) use($cagegoriesIds)
+		{
+			$query->whereIn('category_id', $cagegoriesIds);
+		});
+	}
+
 	public function getRecursiveChildrenArray(Category $category, int $level = 0) : array
 	{
 		$result = [];
@@ -133,6 +151,6 @@ trait InteractsWithCategoryTrait
 
 	static function getByDirectCategory(Category $category) : Collection
 	{
-		return static::where('category_id', $category->getKey())->get();
+		return static::where('category_id', $category->getKey())->orderBy('sorting_index')->get();
 	}
 }
