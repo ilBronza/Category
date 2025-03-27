@@ -6,6 +6,8 @@ use IlBronza\CRUD\Traits\CRUDCreateStoreTrait;
 use IlBronza\CRUD\Traits\CRUDRelationshipTrait;
 use IlBronza\CRUD\Traits\CRUDShowTrait;
 
+use function config;
+
 class CategoryCreateStoreController extends CategoryCRUD
 {
     use CRUDCreateStoreTrait;

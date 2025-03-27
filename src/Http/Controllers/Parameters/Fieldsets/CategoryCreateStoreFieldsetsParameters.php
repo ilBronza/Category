@@ -15,7 +15,7 @@ class CategoryCreateStoreFieldsetsParameters extends FieldsetParametersFile
                 'translationPrefix' => 'category::fields',
                 'fields' => [
                     'name' => ['text' => 'string|required|max:191'],
-                    'slug' => ['text' => 'string|nullable|max:191|unique:categories__categories'],
+	                $this->getModel()->getSlugField() => ['text' => 'string|nullable|max:191'],
                     'collection' => ['text' => 'string|nullable|max:255'],
                     'parent' => [
                         'type' => 'select',
