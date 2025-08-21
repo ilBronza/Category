@@ -107,6 +107,17 @@ trait InteractsWithCategoryTrait
 		});
 	}
 
+	public function scopeExceptGeneralCategory($query, string|Category $category)
+	{
+		if(! is_string($category))
+			$category = $category->getKey();
+
+		return $query->whereDoesntHave('categorizables', function($query) use($category)
+		{
+			$query->where('category_id', $category);
+		});
+	}
+
 	public function scopeByGeneralCategories($query, Collection $categories)
 	{
 		return $query->byGeneralCategoriesIds($categories->pluck('id'));
