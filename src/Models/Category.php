@@ -36,4 +36,16 @@ class Category extends BaseModel
 	{
 		return $this->pdf_title;
 	}
+
+	static function provideCategoryByName(string $name) : static
+	{
+		if($result = static::where('name', $name)->first())
+			return $result;
+
+		$category = static::make();
+		$category->name = $name;
+		$category->save();
+
+		return $category;
+	}
 }

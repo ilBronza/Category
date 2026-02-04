@@ -16,7 +16,7 @@ class CategoryIndexController extends CategoryCRUD
 
     public function getIndexFieldsArray()
     {
-        return config('category.models.category.fieldsGroupsFiles.index')::getFieldsGroup();
+        return config('category.models.category.fieldsGroupsFiles.index')::getTracedFieldsGroup();
     }
 
     public function addIndexButtons()
@@ -28,7 +28,7 @@ class CategoryIndexController extends CategoryCRUD
 
     public function getRelatedFieldsArray()
     {
-        return config('category.models.category.fieldsGroupsFiles.related')::getFieldsGroup();
+        return config('category.models.category.fieldsGroupsFiles.related')::getTracedFieldsGroup();
     }
 
     public function getIndexElements()
