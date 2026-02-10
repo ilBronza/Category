@@ -9,6 +9,9 @@ Route::group([
 	],
 	function()
 	{
+		//IlBronza\Category\Http\Controllers\CategoryAssociationIndexController
+		Route::post('association', [Category::getController('category', 'association'), 'index'])->name('association.index');
+
 		Route::group(['prefix' => 'categories'], function()
 		{
 			Route::get('', [Category::getController('category', 'index'), 'index'])->name('categories.index');
