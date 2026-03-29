@@ -19,6 +19,10 @@ class Category extends BaseModel
 
 	static $packageConfigPrefix = 'category';
 
+	protected $fillable = [
+		'name'
+	];
+
 	use CategoryRelationsAndScopesTrait;
 	use CategoryInteractsWithFilecabinetTrait;
 
