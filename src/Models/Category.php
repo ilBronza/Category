@@ -28,7 +28,7 @@ class Category extends BaseModel
 
 	static $modelConfigPrefix = 'category';
 	public ?string $translationFolderPrefix = 'category';
-	public $deletingRelationships = ['children'];
+	static $deletingRelationships = ['children'];
 	protected $keyType = 'string';
 
 	public function getRelatedCategories()

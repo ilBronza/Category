@@ -15,7 +15,7 @@ class Categorizable extends MorphPivot
 	static $packageConfigPrefix = 'category';
 	static $modelConfigPrefix = 'categorizable';
 	public ?string $translationFolderPrefix = 'category';
-	public $deletingRelationships = [];
+	static $deletingRelationships = [];
 	protected $keyType = 'string';
 
 	public function category()
