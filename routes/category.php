@@ -5,7 +5,8 @@ use IlBronza\Category\Facades\Category;
 Route::group([
 	'middleware' => ['web', 'auth'],
 	'prefix' => 'categories-manager',
-	'as' => config('category.routePrefix')
+	'as' => config('category.routePrefix'),
+	'routeTranslationPrefix' => Category::getRouteTranslationPrefix(),
 	],
 	function()
 	{
