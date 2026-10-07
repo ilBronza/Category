@@ -11,4 +11,6 @@ return [
 	'ibCategorycategoriesstore' => 'Salva categoria',
 	'ibCategorycategoriesstoreReorder' => 'Salva ordine categoria',
 	'ibCategorycategoriesupdate' => 'Aggiorna categoria',
+    'ibCategorycategories.reorder' => 'Riordina categorie',
+    'ibCategorycategories.create' => 'Crea categoria',
 ];

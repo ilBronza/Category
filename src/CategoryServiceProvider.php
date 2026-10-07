@@ -25,6 +25,7 @@ class CategoryServiceProvider extends ServiceProvider
 		]);
 
 		$this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'category');
+		$this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'categories');
 		// $this->loadViewsFrom(__DIR__.'/../resources/views', 'ilbronza');
 		$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 		$this->loadRoutesFrom(__DIR__ . '/../routes/category.php');
