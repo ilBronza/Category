@@ -16,7 +16,7 @@ trait CategoryInteractsWithFilecabinetTrait
 
     public function forms() : MorphToMany
     {
-        return $this->morphedByCategory(Form::getProjectClassName());
+        return $this->morphedByCategory(Form::getProjectClassName())->wherePivotNull('deleted_at');
     }
 
 

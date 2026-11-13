@@ -57,7 +57,7 @@ trait InteractsWithCategoryTrait
 			$this->getCategoryModel(),
 			'categorizable',
 			config('category.models.categorizable.table'),
-		)->using(Categorizable::getProjectClassName());
+		)->using(Categorizable::getProjectClassName())->wherePivotNull('deleted_at');
 	}
 
 	public function category() : BelongsTo
